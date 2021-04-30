@@ -33,7 +33,7 @@ describe('object mock callback', () => {
   })
 })
 
-function createPayload({ id = '', amount = 0 }) {
+const createPayload = ({ id = '', amount = 0 }) => {
   return {
     callback: jest.fn(),
     id,
