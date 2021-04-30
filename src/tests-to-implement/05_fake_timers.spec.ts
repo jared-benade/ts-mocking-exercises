@@ -13,7 +13,7 @@ describe('generateDayMessage', () => {
   it('returns a message containing the current time', () => {
     // Arrange
     const currentDate = new Date('2021-04-30T11:01:58.135+02:00');
-    const expected = '[11:01:58 PM]: Today is Friday'
+    const expected = '[11:01:58 AM]: Today is Friday'
 
     jest.setSystemTime(currentDate)
     // Act
