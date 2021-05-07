@@ -2,6 +2,7 @@ import { describe, expect, it } from '@jest/globals'
 import { generateDayMessage } from '../tests-to-implement/05_fake_timers'
 
 describe('generateDayMessage', () => {
+  const oneWeekMilliseconds = 604800000
   beforeEach(() => {
     jest.useFakeTimers('modern');
   })
@@ -44,8 +45,7 @@ describe('generateDayMessage', () => {
     // Arrange
     const seededDate = new Date('2021-05-03T11:01:58.135+02:00');
     const expected = 'Monday'
-
-    const oneWeekMilliseconds = 604800000
+    
     jest.setSystemTime(seededDate)
     const beforeTimeElapsed = new Date()
 
@@ -63,50 +63,121 @@ describe('generateDayMessage', () => {
 
   it('returns a message containing "Tuesday" on Tuesdays', () => {
     // Arrange
+    const seededDate = new Date('2021-05-04T11:01:58.135+02:00');
+    const expected = 'Tuesday'
+    
+    jest.setSystemTime(seededDate)
+    const beforeTimeElapsed = new Date()
+
+    const beforeTimeElapsedResult = generateDayMessage()
+    expect(beforeTimeElapsed.getDay()).toBe(2)
+    expect(beforeTimeElapsedResult).toContain(expected)
     // Act
+    jest.advanceTimersByTime(oneWeekMilliseconds)
+    const afterTimeElapsed = new Date()
+    const afterTimeElapsedResult = generateDayMessage()
     // Assert
+    expect(afterTimeElapsed.getDay()).toBe(2)
+    expect(afterTimeElapsedResult).toContain(expected)
   })
 
   it('returns a message containing "Wednesday" on Wednesdays', () => {
     // Arrange
+    const seededDate = new Date('2021-05-05T11:01:58.135+02:00');
+    const expected = 'Wednesday'
+    
+    jest.setSystemTime(seededDate)
+    const beforeTimeElapsed = new Date()
+
+    const beforeTimeElapsedResult = generateDayMessage()
+    expect(beforeTimeElapsed.getDay()).toBe(3)
+    expect(beforeTimeElapsedResult).toContain(expected)
     // Act
+    jest.advanceTimersByTime(oneWeekMilliseconds)
+    const afterTimeElapsed = new Date()
+    const afterTimeElapsedResult = generateDayMessage()
     // Assert
+    expect(afterTimeElapsed.getDay()).toBe(3)
+    expect(afterTimeElapsedResult).toContain(expected)
   })
 
   it('returns a message containing "Thursday" on Thursdays', () => {
     // Arrange
+    const seededDate = new Date('2021-05-06T11:01:58.135+02:00');
+    const expected = 'Thursday'
+    
+    jest.setSystemTime(seededDate)
+    const beforeTimeElapsed = new Date()
+
+    const beforeTimeElapsedResult = generateDayMessage()
+    expect(beforeTimeElapsed.getDay()).toBe(4)
+    expect(beforeTimeElapsedResult).toContain(expected)
     // Act
+    jest.advanceTimersByTime(oneWeekMilliseconds)
+    const afterTimeElapsed = new Date()
+    const afterTimeElapsedResult = generateDayMessage()
     // Assert
+    expect(afterTimeElapsed.getDay()).toBe(4)
+    expect(afterTimeElapsedResult).toContain(expected)
   })
 
   it('returns a message containing "Friday" on Fridays', () => {
     // Arrange
+    const seededDate = new Date('2021-05-07T11:01:58.135+02:00');
+    const expected = 'Friday'
+    
+    jest.setSystemTime(seededDate)
+    const beforeTimeElapsed = new Date()
+
+    const beforeTimeElapsedResult = generateDayMessage()
+    expect(beforeTimeElapsed.getDay()).toBe(5)
+    expect(beforeTimeElapsedResult).toContain(expected)
     // Act
+    jest.advanceTimersByTime(oneWeekMilliseconds)
+    const afterTimeElapsed = new Date()
+    const afterTimeElapsedResult = generateDayMessage()
     // Assert
+    expect(afterTimeElapsed.getDay()).toBe(5)
+    expect(afterTimeElapsedResult).toContain(expected)
   })
 
   it('returns a message containing "Saturday" on Saturdays', () => {
     // Arrange
+    const seededDate = new Date('2021-05-08T11:01:58.135+02:00');
+    const expected = 'Saturday'
+    
+    jest.setSystemTime(seededDate)
+    const beforeTimeElapsed = new Date()
+
+    const beforeTimeElapsedResult = generateDayMessage()
+    expect(beforeTimeElapsed.getDay()).toBe(6)
+    expect(beforeTimeElapsedResult).toContain(expected)
     // Act
+    jest.advanceTimersByTime(oneWeekMilliseconds)
+    const afterTimeElapsed = new Date()
+    const afterTimeElapsedResult = generateDayMessage()
     // Assert
+    expect(afterTimeElapsed.getDay()).toBe(6)
+    expect(afterTimeElapsedResult).toContain(expected)
   })
 
-  it.skip('returns a message containing "Sunday" on Sundays', () => {
+  it('returns a message containing "Sunday" on Sundays', () => {
     // Arrange
+    const seededDate = new Date('2021-05-09T11:01:58.135+02:00');
+    const expected = 'Sunday'
+    
+    jest.setSystemTime(seededDate)
+    const beforeTimeElapsed = new Date()
+
+    const beforeTimeElapsedResult = generateDayMessage()
+    expect(beforeTimeElapsed.getDay()).toBe(0)
+    expect(beforeTimeElapsedResult).toContain(expected)
     // Act
+    jest.advanceTimersByTime(oneWeekMilliseconds)
+    const afterTimeElapsed = new Date()
+    const afterTimeElapsedResult = generateDayMessage()
     // Assert
+    expect(afterTimeElapsed.getDay()).toBe(0)
+    expect(afterTimeElapsedResult).toContain(expected)
   })
 })
-
-function getDays(date: number) {
-  var d = new Date(),
-    month = d.getMonth(),
-    days = [];
-  d.setDate(1);
-  while (d.getMonth() === month) {
-    var pushDate = new Date(d.getTime());
-    days.push(pushDate);
-    d.setDate(d.getDate() + 7);
-  }
-  return days
-}
