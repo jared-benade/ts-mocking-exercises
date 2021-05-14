@@ -1,5 +1,3 @@
-import { randomInteger } from "../tests-implemented/helpers/random"
-
 type Callback = (...params: any[]) => any
 
 export enum PubSubChannels {
@@ -27,7 +25,7 @@ export class PubSub {
     for (const callback of this.subscriptions[channel]) {
       setTimeout(() => {
         callback(payload)
-      }, randomInteger(100, 500))
+      }, this.randomInteger(100, 500))
     }
   }
 
@@ -38,5 +36,12 @@ export class PubSub {
       ...(this.subscriptions[channel] || []),
       callback,
     ]
+  }
+
+  randomInteger(min: number = 1, max: number = 1000) {
+    const minInt = Math.floor(min)
+    const maxInt = Math.floor(max)
+    const range = maxInt - minInt + 1
+    return minInt + Math.floor(Math.random() * range)
   }
 }
